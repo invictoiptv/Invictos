@@ -45,21 +45,101 @@ section{padding:78px 0}.light{background:#f4fbf7;color:#0a1710}.section-head{tex
 footer{padding:45px 0;border-top:1px solid var(--line);background:#020303}.footer-grid{display:grid;grid-template-columns:1.3fr 1fr 1fr;gap:40px}.footer-logo{width:180px}.footer p,.footer a{font-size:11px;color:#858e95}.footer h4{font-size:11px;margin-bottom:12px}.copy{margin-top:30px;padding-top:20px;border-top:1px solid var(--line);font-size:10px;color:#666f76}
 .float-wa{position:fixed;right:20px;bottom:20px;width:58px;height:58px;border-radius:50%;background:#087dff;color:#fff;z-index:100;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 12px 35px rgba(0,125,255,.35)}
 .modal-back{position:fixed;inset:0;background:rgba(0,0,0,.76);backdrop-filter:blur(8px);z-index:200;display:none;align-items:center;justify-content:center;padding:18px}.modal-back.open{display:flex}.modal{width:min(560px,100%);background:#0d1113;border:1px solid var(--line);border-radius:18px;padding:24px}.modal-top{display:flex;justify-content:space-between}.modal h2{font-size:21px}.modal-sub{font-size:11px;color:#899299}.close{border:0;background:#1a2023;color:#fff;width:34px;height:34px;border-radius:8px;cursor:pointer}.selected{display:flex;justify-content:space-between;padding:13px;background:#111719;border:1px solid var(--line);border-radius:10px;margin:18px 0 12px;font-size:12px}.selected span{color:var(--green);font-weight:900}.device-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:9px}.device-choice{background:#111619;border:1px solid var(--line);color:#fff;border-radius:10px;padding:13px;text-align:left;cursor:pointer}.device-choice.selected-device{border-color:var(--green);background:rgba(0,125,255,.08)}.device-choice b{font-size:12px;display:block}.device-choice span{font-size:9px;color:#818a90}.modal-btn{width:100%;margin-top:13px;border:0;border-radius:9px;padding:13px;background:var(--green);color:#fff;font-weight:900;cursor:pointer}.back{width:100%;margin-top:8px;border:1px solid var(--line);background:transparent;color:#b9c0c5;padding:11px;border-radius:9px}.modal-step{display:none}.modal-step.active{display:block}.checkout{background:#111719;border:1px solid var(--line);border-radius:10px;padding:12px;margin:13px 0;font-size:11px}.checkout div{display:flex;justify-content:space-between;padding:4px}.checkout strong{color:var(--green)}
+
+/* INVICTOS visual refresh */
+:root{--green:#087dff;--green2:#00c8ff;--dark:#03050a;--dark2:#080b13;--panel:#101521;--line:rgba(94,174,255,.16)}
+body{background:#03050a}
+header{background:rgba(3,5,12,.88);border-bottom-color:rgba(0,183,255,.2)}
+.nav{height:82px}
+.logo img{filter:drop-shadow(0 0 18px rgba(0,151,255,.4))}
+.navlinks a{letter-spacing:.35px}
+.nav-cta,.btn-primary{background:linear-gradient(105deg,#087dff,#00bfff);box-shadow:0 8px 28px rgba(0,125,255,.23)}
+.hero{min-height:690px;background:#03050a}
+.hero-bg{background:linear-gradient(90deg,rgba(2,4,10,.99) 0%,rgba(2,4,10,.91) 34%,rgba(2,4,10,.44) 65%,rgba(2,4,10,.62) 100%),linear-gradient(0deg,#03050a 0%,transparent 28%),url('invictos-assets/arte_8880_1.jpg') center/cover no-repeat;opacity:1}
+.hero-art{right:0;width:64%;opacity:.34;background:radial-gradient(ellipse at 70% 35%,rgba(0,185,255,.28),transparent 48%),linear-gradient(135deg,transparent,#07142a)}
+.hero-art:before{left:15%;top:13%;width:68%;height:68%;border:1px solid rgba(75,184,255,.45);border-radius:26px;background:linear-gradient(135deg,rgba(10,28,57,.45),rgba(3,6,13,.2));box-shadow:0 0 65px rgba(0,119,255,.2),inset 0 0 45px rgba(0,173,255,.08)}
+.hero-logo{width:min(390px,32vw);right:7%;top:52%;opacity:.95}
+.hero-logo img{filter:drop-shadow(0 0 26px rgba(0,145,255,.55))}
+.hero-content{width:59%;padding:88px 0}
+.eyebrow{color:#71d8ff;letter-spacing:2px}
+h1{font-size:clamp(43px,5.1vw,68px);text-shadow:0 5px 35px rgba(0,0,0,.45)}
+h1 em{background:linear-gradient(90deg,#20a7ff,#66edff);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-content p{color:#d1dbe8;max-width:540px}
+.btn{transition:transform .2s,box-shadow .2s}
+.btn:hover,.nav-cta:hover{transform:translateY(-2px);box-shadow:0 12px 34px rgba(0,153,255,.3)}
+section{padding:84px 0}
+#planos{background:radial-gradient(ellipse at 50% 0%,rgba(0,107,255,.11),transparent 45%),#05070d}
+.section-head h2{letter-spacing:-1.2px}
+.plan{background:linear-gradient(155deg,rgba(18,26,42,.96),rgba(7,10,17,.98));border-color:rgba(105,177,255,.16);transition:transform .22s,border-color .22s,box-shadow .22s}
+.plan:hover{transform:translateY(-5px);border-color:rgba(0,174,255,.55);box-shadow:0 20px 50px rgba(0,95,255,.1)}
+.plan.featured{border-color:rgba(0,183,255,.75);background:linear-gradient(155deg,rgba(8,36,67,.98),rgba(7,10,17,.98))}
+.plan.featured button,.plan button{background:linear-gradient(100deg,#087dff,#00bfff)}
+.price{letter-spacing:-1px}
+.save{color:#55d9ff}
+.test{background:linear-gradient(115deg,#071a2c,#eaf5ff 88%)}
+.test-card{box-shadow:0 24px 70px rgba(0,52,120,.2)}
+.wa,.wa-btn,.float-wa{background:linear-gradient(135deg,#087dff,#00bfff)}
+.features .feature{background:linear-gradient(145deg,#101827,#080b12);border-color:rgba(93,165,255,.17);transition:transform .2s,border-color .2s}
+.features .feature:hover{transform:translateY(-4px);border-color:rgba(0,174,255,.55)}
+.light{background:linear-gradient(135deg,#edf7ff,#f9fcff);color:#091523}
+.light .section-head .eyebrow{color:#087dff}
+.light .feature{background:#fff}
+.stats{border-color:rgba(91,163,255,.16)}
+.stat strong{color:#28b9ff}
+.review{background:linear-gradient(145deg,#111827,#080b12);border-color:rgba(93,165,255,.16)}
+.faq details{background:linear-gradient(145deg,#101827,#080b12);border-color:rgba(93,165,255,.15)}
+footer{background:#02040a}
+.float-wa{box-shadow:0 10px 34px rgba(0,132,255,.4)}
+/* Cinematic promotional gallery */
+.promo-section{padding:78px 0;background:radial-gradient(ellipse at 50% 0%,rgba(112,20,255,.12),transparent 55%),#05060c}
+.promo-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
+.promo-card{position:relative;overflow:hidden;border-radius:18px;min-height:280px;background:#0b1020;border:1px solid rgba(108,155,255,.24);box-shadow:0 18px 50px rgba(0,0,0,.28)}
+.promo-card img{display:block;width:100%;height:100%;min-height:280px;object-fit:cover;transition:transform .55s}
+.promo-card:hover img{transform:scale(1.035)}
+.promo-card:after{content:"";position:absolute;inset:45% 0 0;background:linear-gradient(0deg,rgba(2,3,10,.92),transparent);pointer-events:none}
+.promo-caption{position:absolute;z-index:1;left:22px;right:22px;bottom:19px;text-shadow:0 2px 14px #000}
+.promo-caption b{display:block;font-size:clamp(17px,2vw,25px);font-weight:900;line-height:1.1}
+.promo-caption span{display:block;color:#d4e7ff;font-size:11px;margin-top:7px;letter-spacing:.7px}
+.promo-badge{display:inline-block!important;width:max-content;background:linear-gradient(90deg,#7a16ff,#087dff);padding:5px 9px;border-radius:99px;font-size:9px!important;font-weight:900;margin-bottom:9px}
+@media(max-width:900px){
+ .hero{min-height:680px}.hero-content{width:72%}.hero-logo{width:31vw;right:3%}
+ .promo-grid{gap:14px}.promo-card,.promo-card img{min-height:230px}
+}
+@media(max-width:600px){
+ .nav{height:74px}.hero{min-height:760px;align-items:flex-start}
+ .hero-bg{background:linear-gradient(90deg,rgba(2,4,10,.93),rgba(2,4,10,.58)),linear-gradient(0deg,#03050a 0%,transparent 55%),url('invictos-assets/arte_8880_1.jpg') 58% center/cover no-repeat}
+ .hero-content{width:100%;padding:56px 0 0}.hero-logo{width:48vw;right:4%;bottom:18px;top:auto;opacity:.7}
+ .hero-art{width:100%;opacity:.12}.hero-content p{font-size:14px}
+ .hero-actions .btn{width:100%}.trust{gap:10px}
+ .promo-section{padding:58px 0}.promo-grid{grid-template-columns:1fr}.promo-card,.promo-card img{min-height:230px}
+ section{padding:62px 0}
+}
+
 @media(max-width:900px){.navlinks{display:none}.hero-content{width:70%}.hero-logo{width:48vw;right:1%}.hero-art{width:60%;opacity:.45}.plans{grid-template-columns:repeat(2,1fr)}.features{grid-template-columns:repeat(2,1fr)}.stats{grid-template-columns:repeat(2,1fr)}.test-grid{grid-template-columns:1fr}.reviews{grid-template-columns:1fr}.footer-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.nav{height:78px}.logo img{width:175px;height:62px}.nav-cta{margin-left:auto;padding:10px 13px}.hero{min-height:700px}.hero-content{width:100%;padding-top:65px}.hero-logo{width:82vw;right:9%;top:auto;bottom:10px;transform:none;opacity:.82}.hero-art{width:100%;opacity:.18}.plans,.features{grid-template-columns:1fr}.plan.featured{transform:none}.test h2{font-size:34px}.footer-grid{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}.hero-actions .btn{width:100%}}
+
+/* Vídeo em destaque */
+.video-feature{padding:76px 0;background:radial-gradient(ellipse at 18% 50%,rgba(0,145,255,.18),transparent 42%),linear-gradient(135deg,#070b14,#05060b 70%);border-top:1px solid rgba(0,174,255,.15);border-bottom:1px solid rgba(0,174,255,.15)}
+.video-feature-grid{display:grid;grid-template-columns:1fr .82fr;align-items:center;gap:clamp(28px,5vw,66px)}
+.video-frame{position:relative;max-width:390px;width:100%;justify-self:center;padding:8px;border-radius:24px;background:linear-gradient(145deg,#168dff,#10233d 48%,#00c8ff);box-shadow:0 24px 75px rgba(0,116,255,.22)}
+.video-frame video{display:block;width:100%;max-height:660px;aspect-ratio:9/16;object-fit:cover;background:#020407;border-radius:17px}
+.video-label{position:absolute;top:20px;left:20px;background:rgba(0,8,18,.82);border:1px solid rgba(100,190,255,.35);border-radius:999px;padding:7px 11px;color:#d9f2ff;font-size:9px;font-weight:900;letter-spacing:1px;backdrop-filter:blur(8px)}
+.video-copy .eyebrow{color:#64d4ff}.video-copy h2{font-size:clamp(34px,4.2vw,53px);line-height:1.03;letter-spacing:-2px;margin:13px 0 18px}.video-copy h2 em{font-style:normal;background:linear-gradient(90deg,#168dff,#69e3ff);-webkit-background-clip:text;background-clip:text;color:transparent}.video-copy p{max-width:510px;color:#b7c4d3;font-size:14px}.video-points{display:grid;gap:10px;margin:22px 0 26px}.video-points span{color:#e3edf7;font-size:12px}.video-points b{display:inline-flex;align-items:center;justify-content:center;width:25px;height:25px;margin-right:9px;border-radius:8px;background:rgba(0,145,255,.16);color:#63d8ff}.video-actions{display:flex;gap:11px;flex-wrap:wrap}.video-actions .btn{min-height:47px}.video-note{font-size:10px!important;color:#75879a!important;margin-top:13px}
+@media(max-width:760px){.video-feature{padding:58px 0}.video-feature-grid{grid-template-columns:1fr;gap:30px}.video-frame{max-width:320px;order:2}.video-copy{order:1;text-align:center}.video-copy .eyebrow{justify-content:center}.video-copy p{margin:auto}.video-points{text-align:left;max-width:330px;margin:22px auto}.video-actions{justify-content:center}.video-actions .btn{width:100%}}
+
 </style>
 </head>
 <body>
 <header>
 <div class="container nav">
-<a class="logo" href="#inicio"><img src="logo-invictos.png" alt="INVICTOS IPTV"></a>
-<nav class="navlinks"><a href="#inicio">INÍCIO</a><a href="#planos">PLANOS IPTV</a><a href="#dispositivos">DISPOSITIVOS</a><a href="#teste">TESTE IPTV</a><a href="#faq">SOBRE NÓS</a></nav>
+<a class="logo" href="#inicio"><img src="invictos-assets/logo-invictos.png" alt="INVICTOS IPTV"></a>
+<nav class="navlinks"><a href="#inicio">INÍCIO</a><a href="#destaques">DESTAQUES</a><a href="#planos">PLANOS IPTV</a><a href="#dispositivos">DISPOSITIVOS</a><a href="#teste">TESTE IPTV</a><a href="#faq">SOBRE NÓS</a></nav>
 <a class="nav-cta" href="#teste">TESTE IPTV GRÁTIS</a>
 </div>
 </header>
 
 <section class="hero" id="inicio">
-<div class="hero-bg"></div><div class="hero-art"></div><div class="hero-logo"><img src="logo-invictos.png" alt="INVICTOS IPTV"></div>
+<div class="hero-bg"></div><div class="hero-art"></div><div class="hero-logo"><img src="invictos-assets/logo-invictos.png" alt="INVICTOS IPTV"></div>
 <div class="container">
 <div class="hero-content">
 <div class="eyebrow"><i></i> IPTV • ENTRETENIMENTO DIGITAL</div>
@@ -69,6 +149,58 @@ footer{padding:45px 0;border-top:1px solid var(--line);background:#020303}.foote
 <div class="trust"><span>★ <strong>Atendimento pelo WhatsApp</strong></span><span>✓ Serviço para conteúdos autorizados</span></div>
 </div>
 </div>
+</section>
+
+<section class="video-feature" id="video-destaque">
+ <div class="container video-feature-grid">
+  <div class="video-frame">
+   <span class="video-label">▶ VÍDEO DE DEMONSTRAÇÃO</span>
+   <video controls playsinline preload="metadata" poster="invictos-assets/video-poster.jpg" aria-label="Vídeo de demonstração da INVICTOS IPTV">
+    <source src="invictos-assets/video-invictos.mp4" type="video/mp4">
+    Seu navegador não consegue reproduzir este vídeo. Atualize o navegador ou tente outro dispositivo.
+   </video>
+  </div>
+  <div class="video-copy">
+   <div class="eyebrow"><i></i> VEJA NA PRÁTICA</div>
+   <h2>Conheça a experiência <em>INVICTOS</em></h2>
+   <p>Dê o play no vídeo e veja uma demonstração real na tela. Ficou com dúvidas sobre compatibilidade ou configuração? Nossa equipe pode orientar você pelo WhatsApp.</p>
+   <div class="video-points">
+    <span><b>✓</b> Demonstração em vídeo, direto na página</span>
+    <span><b>✓</b> Orientação para dispositivos compatíveis</span>
+    <span><b>✓</b> Atendimento para tirar suas dúvidas</span>
+   </div>
+   <div class="video-actions"><a class="btn btn-primary" href="#teste">QUERO SABER MAIS →</a><a class="btn btn-secondary" href="#planos">VER PLANOS</a></div>
+   <p class="video-note">Disponibilidade de canais e conteúdos depende dos direitos e autorizações aplicáveis.</p>
+  </div>
+ </div>
+</section>
+
+<section class="promo-section" id="destaques">
+ <div class="container">
+  <div class="section-head">
+   <div class="eyebrow">Universo INVICTOS</div>
+   <h2>Seu próximo play começa aqui</h2>
+   <p>Uma seleção visual para destacar filmes, séries e entretenimento em uma experiência moderna.</p>
+  </div>
+  <div class="promo-grid">
+   <article class="promo-card">
+    <img src="invictos-assets/arte_8881_1.jpg" alt="Arte promocional de aventura e entretenimento" loading="lazy">
+    <div class="promo-caption"><span class="promo-badge">AVENTURA &amp; FANTASIA</span><b>Histórias que levam você a outros mundos</b><span>Descubra novas opções para sua próxima sessão.</span></div>
+   </article>
+   <article class="promo-card">
+    <img src="invictos-assets/arte_8906_1.jpg" alt="Arte promocional colorida de animação" loading="lazy">
+    <div class="promo-caption"><span class="promo-badge">DIVERSÃO PARA TODOS</span><b>Momentos para curtir em família</b><span>Entretenimento para diferentes gostos e idades.</span></div>
+   </article>
+   <article class="promo-card">
+    <img src="invictos-assets/arte_8897_1.jpg" alt="Arte promocional de ação e suspense" loading="lazy">
+    <div class="promo-caption"><span class="promo-badge">AÇÃO &amp; SUSPENSE</span><b>Prepare-se para fortes emoções</b><span>Uma atmosfera cinematográfica para sua experiência.</span></div>
+   </article>
+   <article class="promo-card">
+    <img src="invictos-assets/arte_8880_1.jpg" alt="Arte promocional de cinema e streaming" loading="lazy">
+    <div class="promo-caption"><span class="promo-badge">SEU ENTRETENIMENTO</span><b>Escolha, acomode-se e dê o play</b><span>Consulte a equipe sobre conteúdos e disponibilidade autorizados.</span></div>
+   </article>
+  </div>
+ </div>
 </section>
 
 <section id="planos">
@@ -142,7 +274,7 @@ footer{padding:45px 0;border-top:1px solid var(--line);background:#020303}.foote
 <footer>
 <div class="container">
 <div class="footer-grid">
-<div><img class="footer-logo" src="logo-invictos.png" alt="INVICTOS IPTV"><p style="margin-top:10px">Seu entretenimento, do seu jeito.</p></div>
+<div><img class="footer-logo" src="invictos-assets/logo-invictos.png" alt="INVICTOS IPTV"><p style="margin-top:10px">Seu entretenimento, do seu jeito.</p></div>
 <div><h4>LINKS RÁPIDOS</h4><p><a href="#inicio">Início</a></p><p><a href="#planos">Planos IPTV</a></p><p><a href="#teste">Teste grátis</a></p><p><a href="#dispositivos">Dispositivos</a></p></div>
 <div><h4>ATENDIMENTO</h4><p><a href="https://wa.me/5521984535517" target="_blank">WhatsApp: (21) 98453-5517</a></p><p>Atendimento e suporte pelo WhatsApp.</p></div>
 </div>
