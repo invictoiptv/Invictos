@@ -50,33 +50,21 @@ const {data,error}=await supabase.from('prospecting_searches').select('id,search
 if(!error)searchHistory=data||[];
 }
 async function runProspectingSearch(){
-const mode=document.getElementById('prospectMode')?.value||'handle';
-const term=(document.getElementById('prospectTerm')?.value||'').trim();
-const out=document.getElementById('publicSearchResults');
-const btn=app.querySelector('[data-action="prospect-run"]');
-if(mode==='followers'||mode==='following'){toast('Importe uma lista autorizada em CSV.');return}
-if(mode==='history'){if(out)out.innerHTML=prospectHistoryHtml();return}
-if(!term){toast('Informe o termo da pesquisa.');return}
-if(mode==='handle'&&!/^[ @a-zA-Z0-9._]{1,32}$/.test(term)){toast('Confira o @ informado.');return}
-if(mode==='hashtag'&&!/^#?[a-zA-Z0-9_]{2,80}$/.test(term)){toast('Informe uma hashtag válida.');return}
-if(btn){btn.disabled=true;btn.textContent='Pesquisando...'}
-if(out)out.innerHTML='<div class="notice">Pesquisando páginas públicas indexadas e verificando canais comerciais publicados...</div>';
+const mode=document.getElementById('prospectMode')?.value||'handle',term=(document.getElementById('prospectTerm')?.value||'').trim(),out=document.getElementById('publicSearchResults'),btn=app.querySelector('[data-action="prospect-run"]');
+if(mode==='followers'||mode==='following'){toast('Importe uma lista autorizada em CSV.');return}if(mode==='history'){if(out)out.innerHTML=prospectHistoryHtml();return}if(!term){toast('Informe o termo da pesquisa.');return}
+if(mode==='handle'&&!/^@?[a-zA-Z0-9._]{1,30}$/.test(term)){toast('Confira o @ informado.');return}if(mode==='hashtag'&&!/^#?[a-zA-Z0-9_]{2,80}$/.test(term)){toast('Informe uma hashtag válida.');return}
+if(btn){btn.disabled=true;btn.textContent='Pesquisando...'}if(out)out.innerHTML='<div class="notice">Consultando mais de uma fonte pública. Isso pode levar alguns segundos...</div>';
+const externalQuery=mode==='handle'?term.replace(/^@/,''):term,googleUrl='https://www.google.com/search?q='+encodeURIComponent('"'+externalQuery+'" contato telefone WhatsApp'),bingUrl='https://www.bing.com/search?q='+encodeURIComponent('"'+externalQuery+'" contato telefone WhatsApp');
 try{
-const {data,error}=await supabase.functions.invoke('public-contact-search',{body:{mode,term}});
-if(error)throw error;
-if(data?.error)throw new Error(data.error);
-publicSearchCache=data?.results||[];
-const found=publicSearchCache.reduce((n,x)=>n+(x.phones||[]).length+(x.emails||[]).length,0);
+const {data,error}=await supabase.functions.invoke('public-contact-search',{body:{mode,term}});if(error)throw error;if(data?.error)throw new Error(data.error);
+publicSearchCache=data?.results||[];const found=publicSearchCache.reduce((n,x)=>n+(x.phones||[]).length+(x.emails||[]).length,0);
 const {error:historyError}=await supabase.from('prospecting_searches').insert({workspace_id:profile.workspace_id,created_by:session.user.id,search_type:mode,search_term:term,query_text:term,result_count:publicSearchCache.length,contact_count:found,results:publicSearchCache});
-if(historyError)console.warn('Histórico não salvo:',historyError.message);
-await loadSearchHistory();
-if(!out)return;
-out.innerHTML='<div class="panel-head"><div><h3>Resultados: '+esc(term)+'</h3><p>'+publicSearchCache.length+' páginas públicas • '+found+' possíveis canais de contato</p></div><button class="btn secondary" id="copyPublicContacts">Copiar contatos</button></div><p class="helper">'+esc(data?.note||'Confira a fonte antes de salvar.')+'</p>'+(publicSearchCache.length?publicSearchCache.map((x,i)=>'<div class="form-card" style="margin:10px 0"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><strong>'+esc(x.title||'Página pública')+'</strong><a href="'+esc(x.url)+'" target="_blank" rel="noopener">Abrir fonte ↗</a></div><p>'+esc(x.snippet||'Sem descrição disponível.')+'</p>'+(x.phones?.length?'<p><b>Telefones:</b> '+x.phones.map(esc).join(' · ')+'</p>':'')+(x.emails?.length?'<p><b>E-mails:</b> '+x.emails.map(esc).join(' · ')+'</p>':'')+((x.phones?.length||x.emails?.length)?'<button class="mini-btn" data-save-public="'+i+'">Salvar como contato comercial (revisar fonte)</button>':'<small class="muted">Nenhum canal de contato identificado nesta página.</small>')+'</div>').join(''):'<div class="empty">Nenhuma página pública indexada foi encontrada. Tente outro termo ou refine a pesquisa.</div>');
-const copy=document.getElementById('copyPublicContacts');
-if(copy)copy.onclick=async()=>{const lines=publicSearchCache.flatMap(x=>[...(x.phones||[]),...(x.emails||[])]);if(!lines.length){toast('Nenhum contato para copiar.');return}await navigator.clipboard.writeText([...new Set(lines)].join('\n'));toast(lines.length+' contatos copiados.')};
-wirePublicSaveButtons();
-const hist=document.getElementById('prospectHistory');if(hist)hist.innerHTML=prospectHistoryHtml();
-}catch(err){if(out)out.innerHTML='<div class="notice">Falha na pesquisa: '+esc(err.message||'serviço indisponível')+'. Tente novamente mais tarde.</div>';toast('Não foi possível concluir a pesquisa.')}
+if(historyError)console.warn('Histórico não salvo:',historyError.message);await loadSearchHistory();if(!out)return;
+const fallback='<div class="notice">'+esc(data?.searchWarning||'A fonte automática não encontrou páginas nesta consulta. Isso não significa que o perfil não tenha contatos públicos.')+'<br><br>Abra uma pesquisa externa para conferir manualmente: <a href="'+googleUrl+'" target="_blank" rel="noopener">Pesquisar no Google ↗</a> · <a href="'+bingUrl+'" target="_blank" rel="noopener">Pesquisar no Bing ↗</a></div>';
+out.innerHTML='<div class="panel-head"><div><h3>Resultados: '+esc(term)+'</h3><p>'+publicSearchCache.length+' páginas públicas • '+found+' possíveis canais de contato</p></div><button class="btn secondary" id="copyPublicContacts">Copiar contatos</button></div><p class="helper">'+esc(data?.note||'Confira a fonte antes de salvar.')+(data?.providers?.length?' Fonte(s): '+esc(data.providers.join(', '))+'.':'')+'</p>'+(publicSearchCache.length?publicSearchCache.map((x,i)=>'<div class="form-card" style="margin:10px 0"><div style="display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap"><strong>'+esc(x.title||'Página pública')+'</strong><a href="'+esc(x.url)+'" target="_blank" rel="noopener">Abrir fonte ↗</a></div><p>'+esc(x.snippet||'Sem descrição disponível.')+'</p>'+(x.phones?.length?'<p><b>Telefones:</b> '+x.phones.map(esc).join(' · ')+'</p>':'')+(x.emails?.length?'<p><b>E-mails:</b> '+x.emails.map(esc).join(' · ')+'</p>':'')+((x.phones?.length||x.emails?.length)?'<button class="mini-btn" data-save-public="'+i+'">Salvar como contato comercial (revisar fonte)</button>':'<small class="muted">Nenhum canal de contato identificado nesta página.</small>')+'</div>').join(''):fallback);
+const copy=document.getElementById('copyPublicContacts');if(copy)copy.onclick=async()=>{const lines=publicSearchCache.flatMap(x=>[...(x.phones||[]),...(x.emails||[])]);if(!lines.length){toast('Nenhum contato para copiar.');return}await navigator.clipboard.writeText([...new Set(lines)].join('\n'));toast(lines.length+' contatos copiados.')};
+wirePublicSaveButtons();const hist=document.getElementById('prospectHistory');if(hist)hist.innerHTML=prospectHistoryHtml();
+}catch(err){if(out)out.innerHTML='<div class="notice">Falha na pesquisa automática: '+esc(err.message||'serviço indisponível')+'.<br><br><a href="'+googleUrl+'" target="_blank" rel="noopener">Pesquisar no Google ↗</a> · <a href="'+bingUrl+'" target="_blank" rel="noopener">Pesquisar no Bing ↗</a></div>';toast('Não foi possível concluir a pesquisa automática.')}
 finally{if(btn){btn.disabled=false;btn.textContent='Pesquisar agora'}}
 }
 function wirePublicSaveButtons(){app.querySelectorAll('[data-save-public]').forEach(b=>b.onclick=()=>savePublicSearchLead(Number(b.dataset.savePublic)))}
