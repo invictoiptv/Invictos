@@ -18,3 +18,6 @@ Região: sa-east-1 (São Paulo).
 
 ## Publicação
 Cloudflare Pages: framework None, build command vazio, build output directory `leadflow` (se o root directory for a raiz do repositório) ou root directory `/leadflow` e output directory `.`.
+
+
+Deployment trigger: initial Pages project connected to this branch.
