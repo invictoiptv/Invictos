@@ -1,28 +1,27 @@
 # LeadFlow Instagram
 
-CRM leve para captação e gestão de contatos, com Supabase Auth + Postgres e publicação estática no Cloudflare Pages.
+CRM de prospecção e gestão de contatos, com Supabase Auth + Postgres e publicação estática no Cloudflare Pages.
 
-## Funcionalidades
-- Login e cadastro por e-mail/senha.
-- Primeiro usuário configura o espaço e recebe papel de administrador.
-- Convites individuais para funcionários (token de uso único, expira em 7 dias).
-- Leads compartilhados na equipe, etapas de funil, notas, importação e exportação CSV.
-- Módulo de prospecção pública: pesquisa por segmento/cidade na web e Google Maps, cadastro de empresas com telefone comercial publicado, registro da URL de origem e classificação entre empresa e pessoa física.
-- Registro da base de contato (`public_business_contact`, `consent`, `inbound` ou `existing_relationship`) para apoiar a governança da lista.
-- Formulário público de cadastro e formulário para link da bio do Instagram.
-- Consentimento de contato registrado no momento da captação.
-- Row Level Security nas tabelas expostas.
+## Central de prospecção
+- Pesquisa por @ de perfil, hashtags, localização e URLs de publicações em páginas públicas indexadas.
+- Localização de telefones e e-mails publicados em páginas encontradas, com link da fonte e revisão humana antes de salvar.
+- Importação CSV de listas de seguidores/seguindo obtidas legitimamente pelo titular da conta ou por fonte autorizada.
+- Histórico de pesquisas e importações compartilhado dentro do espaço de trabalho.
+- Cadastro manual, deduplicação, exportação CSV e qualificação de contatos.
+- Separação entre empresas (contato comercial publicado) e pessoas físicas (consentimento, inbound ou relacionamento pré-existente).
 
-## Configuração
-O app usa a chave publishable do Supabase no navegador. Chaves service_role/secret nunca devem ser publicadas.
-Projeto Supabase: https://appgmuqpqyzkfflzhuws.supabase.co
-Região: sa-east-1 (São Paulo).
+## Limites e privacidade
+A API oficial do Instagram/Meta não fornece a lista completa de seguidores ou seguindo de perfis de terceiros, nem os telefones privados dessas pessoas. A ferramenta não faz scraping autenticado, não contorna limites da plataforma e não apresenta perfis encontrados em pesquisa pública como se fossem seguidores.
+A pesquisa de URLs de publicações pode encontrar páginas indexadas, mas não equivale a extrair todos os comentaristas. Para seguidores, seguindo e listas de comentaristas, use somente exportações ou fontes às quais o titular tenha acesso legítimo e importe os dados com base válida.
+Telefones/e-mails identificados em páginas públicas são candidatos; a equipe deve conferir se a própria empresa divulga aquele canal para atendimento comercial antes de salvar ou contatar. Pessoas físicas exigem consentimento, solicitação de contato ou outra base legal válida. Respeite pedidos de interrupção de contato e mantenha a origem dos dados.
 
-## Prospecção responsável
-A pesquisa abre resultados públicos no navegador; não coleta automaticamente dados do Instagram, não extrai telefones privados de seguidores e não contorna limites da plataforma. Cadastre empresas somente com canais divulgados pela própria empresa para atendimento comercial. Cadastre pessoas físicas somente quando houver solicitação de retorno ou autorização. Guarde a URL da fonte e respeite pedidos de interrupção de contato.
+## Segurança e dados
+- Supabase Auth e Row Level Security.
+- Histórico de prospecção isolado por workspace.
+- A chave publishable pode estar no navegador; chaves service_role/secret nunca devem ser publicadas.
+- WhatsApp abre conversas individuais para revisão humana; não há disparo automático.
 
-## Publicação
-Cloudflare Pages: framework None, build command vazio, build output directory `leadflow` (se o root directory for a raiz do repositório) ou root directory `/leadflow` e output directory `.`.
-
-
-Deployment trigger: initial Pages project connected to this branch.
+## Infraestrutura
+Supabase: https://appgmuqpqyzkfflzhuws.supabase.co (sa-east-1).
+Cloudflare Pages: projeto `leadflow-instagram`.
+GitHub: `invictoiptv/Invictos`, branch `leadflow-instagram`.
