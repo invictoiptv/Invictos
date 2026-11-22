@@ -6,7 +6,7 @@ CRM leve para captação e gestão de contatos, com Supabase Auth + Postgres e p
 - Login e cadastro por e-mail/senha.
 - Primeiro usuário configura o espaço e recebe papel de administrador.
 - Convites individuais para funcionários (token de uso único, expira em 7 dias).
-- Leads compartilhados na equipe, etapas de funil, notas e exportação CSV.
+- Leads compartilhados na equipe, etapas de funil, notas, importação e exportação CSV.
 - Módulo de prospecção pública: pesquisa por segmento/cidade na web e Google Maps, cadastro de empresas com telefone comercial publicado, registro da URL de origem e classificação entre empresa e pessoa física.
 - Registro da base de contato (`public_business_contact`, `consent`, `inbound` ou `existing_relationship`) para apoiar a governança da lista.
 - Formulário público de cadastro e formulário para link da bio do Instagram.
